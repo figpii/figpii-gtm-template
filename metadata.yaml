@@ -1,4 +1,4 @@
 homepage: "https://figpii.com/"
 versions:
-  - sha: 
+  - sha: a72bf052266843c8609e95bd17ed1a235523e720
     changeNotes: Initial release.
