@@ -14,7 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "FigPii",
-  "categories": ["ANALYTICS", "EXPERIMENTATION", "HEAT_MAP", ],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -49,10 +48,11 @@ const queryPermission = require('queryPermission');
 const encodeUriComponent = require('injectScript');
 
 // capture values of template fields
-const src = data.accessKey;
+var src = data.accessKey;
 
 // define tracking code
 var url = 'https://tracking-cdn.figpii.com/' + src + '.js';
+url = encodeUriComponent(url);
 
 // If the user chose to log debug output, initialize the logging method
 const log = data.debug ? logToConsole : (() => {});
@@ -108,7 +108,23 @@ ___WEB_PERMISSIONS___
         "publicId": "inject_script",
         "versionId": "1"
       },
-      "param": []
+      "param": [
+        {
+          "key": "urls",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "https://tracking-cdn.figpii.com/*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   }
@@ -122,6 +138,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 9/2/2021, 8:54:37 PM
+Created on 9/13/2021, 1:42:32 PM
 
 
